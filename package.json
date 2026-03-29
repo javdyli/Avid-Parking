@@ -1,0 +1,16 @@
+{
+  "name": "aps-avid-parking-systems",
+  "version": "1.0.0",
+  "description": "APS — Avid Parking Systems · Netlify deployment",
+  "private": true,
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "dev": "netlify dev",
+    "build": "echo 'No build step — pure HTML'"
+  },
+  "devDependencies": {
+    "netlify-cli": "^17.0.0"
+  }
+}

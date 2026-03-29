@@ -1,0 +1,32 @@
+[build]
+  # The folder that contains index.html
+  publish = "."
+
+  # Build command - none needed (pure HTML + JS)
+  command = ""
+
+# Redirect /api/* to Netlify Functions
+[[redirects]]
+  from   = "/api/square-proxy"
+  to     = "/.netlify/functions/square-proxy"
+  status = 200
+
+# Serve index.html for all routes (single-page app)
+[[redirects]]
+  from   = "/*"
+  to     = "/index.html"
+  status = 200
+
+# Security headers
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options         = "DENY"
+    X-Content-Type-Options  = "nosniff"
+    Referrer-Policy         = "strict-origin-when-cross-origin"
+    # Square Web Payments SDK requires these CSP entries
+    Content-Security-Policy = "default-src 'self'; script-src 'self' 'unsafe-inline' https://web.squarecdn.com https://sandbox.web.squarecdn.com; frame-src https://web.squarecdn.com https://sandbox.web.squarecdn.com; connect-src 'self' https://connect.squareup.com https://connect.squareupsandbox.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com;"
+
+# Functions configuration
+[functions]
+  directory = "netlify/functions"
